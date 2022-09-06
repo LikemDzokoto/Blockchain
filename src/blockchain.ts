@@ -1,4 +1,4 @@
-import sha256 from 'js-sha256';
+import sha256  from 'js-sha256';
 import Block from './block';
 
 
@@ -72,7 +72,7 @@ export default class Blockchain implements BlockchainData{
         let  hash  =sha256(block.key);
         
         //mining 
-        while(!hash.startsWith('737A')){
+        while(!hash.startsWith('7a7')){
             block.nonce +=1;
             hash = sha256(block.key);
             console.log(hash);

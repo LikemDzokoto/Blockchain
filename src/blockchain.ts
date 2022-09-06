@@ -71,6 +71,13 @@ export default class Blockchain implements BlockchainData{
     public generateHash(block: BlockData): string {
         let  hash  =sha256(block.key);
         
+        //mining 
+        while(!hash.startsWith('737A')){
+            block.nonce +=1;
+            hash = sha256(block.key);
+            console.log(hash);
+        }
+        
         return hash;
 
     }

@@ -16,7 +16,11 @@ export default class Block implements BlockData{
         public hash : string = '',
         public previoushash : string = '',
         public nonce : number =0,
-        public transaction : any[] = [],
+        public transactions : any[] = [],
 
     ){}
+    get key(): string {
+        return JSON.stringify(this.transactions) + this.index + this.previoushash + this.nonce;
+        
+    }
 }

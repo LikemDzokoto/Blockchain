@@ -1,4 +1,6 @@
-import Transaction from './transaction';
+import sha256 from 'js-sha256';
+import Block from './block';
+
 
 interface TransactionData{
     from:string;    
@@ -21,7 +23,8 @@ interface BlockchainData{
     //genesis block is a single block
     genesisBlock: BlockData;
     addBlock(block : BlockData) : void;
-    //nextBlock(transaction : TransactionData[]) :BlockData;
+    getNextBlock(transactions : TransactionData[]) :BlockData;
+    getPreviousBlock() : BlockData;
     generateHash(block:BlockData) : string;
 }
 
@@ -42,7 +45,33 @@ export default class Blockchain implements BlockchainData{
         }
         this.blocks = [...this.blocks, block];
     }
-    public generateHash(block: BlockData): string {
-        return '';        
+    public getPreviousBlock(): BlockData{
+        return this.blocks[this.blocks.length -1];
     }
-}
+
+    public getNextBlock(transactions: TransactionData[]) {
+        let block = new Block();
+        transactions.map(function(t: TransactionData){
+            block.addTransaction(t);
+        })
+         
+
+        let previousBlock  =this.getPreviousBlock();
+        //would return 1 if its the genesis block
+        block.index = this.blocks.length;
+        block.previoushash = previousBlock.hash;    
+        block.hash = this.generateHash(block);
+    
+        return block;
+   
+    }
+
+        
+
+    public generateHash(block: BlockData): string {
+        let  hash  =sha256(block.key);
+        
+        return hash;
+
+    }
+}   

@@ -16,6 +16,8 @@ export interface BlockData{
 export interface BlockchainData{
   //store all the blocks to the block data 
     blocks: BlockData[];
+    //setup block difficulty
+    difficulty : number;
     //genesis block is a single block
     genesisBlock: BlockData;
     addBlock(block : BlockData) : void;

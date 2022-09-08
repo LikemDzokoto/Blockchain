@@ -7,9 +7,11 @@ import { BlockData,BlockchainData,TransactionData } from './class';
 
 export default class Blockchain implements BlockchainData{
     public blocks: BlockData[];
+    public difficulty: number; 
     //constructor runs the genesis block first 
     constructor(genesisBlock : BlockData){
         this.blocks =[];
+        this.difficulty =3;
         this.addBlock(genesisBlock);
     }
     genesisBlock!: BlockData;
@@ -48,7 +50,7 @@ export default class Blockchain implements BlockchainData{
         let  hash  =sha256(block.key);
         
         //mining 
-        while(!hash.startsWith('7a7')){
+        while(!hash.startsWith(Array(this.difficulty +1).join('0'))){
             block.nonce +=1;
             hash = sha256(block.key);
             console.log(hash);

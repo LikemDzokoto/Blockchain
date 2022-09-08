@@ -1,9 +1,4 @@
-interface TransactionData{
-    from:string;    
-    to: string;
-    amount:number;
-}
-
+import { TransactionData } from "./class";
 export default class Transaction implements TransactionData{
     constructor (
         public from : string,

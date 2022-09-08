@@ -1,16 +1,4 @@
-interface TransactionData {
-    from: string;
-    to: string;
-    amount: number;
-}
-interface BlockData {
-    index: number;
-    hash: string;
-    previoushash: string;
-    nonce: number;
-    transactions: TransactionData[];
-    key: string;
-}
+import { BlockData, TransactionData } from "./class";
 export default class Block implements BlockData {
     index: number;
     hash: string;
@@ -21,4 +9,3 @@ export default class Block implements BlockData {
     get key(): string;
     addTransaction(transaction: TransactionData): void;
 }
-export {};

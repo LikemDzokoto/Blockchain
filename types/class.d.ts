@@ -13,6 +13,7 @@ export interface BlockData {
 }
 export interface BlockchainData {
     blocks: BlockData[];
+    difficulty: number;
     genesisBlock: BlockData;
     addBlock(block: BlockData): void;
     getNextBlock(transactions: TransactionData[]): BlockData;

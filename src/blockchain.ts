@@ -1,32 +1,8 @@
 import sha256  from 'js-sha256';
 import Block from './block';
 
+import { BlockData,BlockchainData,TransactionData } from './class';
 
-interface TransactionData{
-    from:string;    
-    to: string;
-    amount:number;
-}
-interface BlockData{
-     index : number;
-     hash : string;
-     previoushash: string;
-     nonce : number;
-     transactions: TransactionData[];
-     key: string;
-
-}
-
-interface BlockchainData{
-  //store all the blocks to the block data 
-    blocks: BlockData[];
-    //genesis block is a single block
-    genesisBlock: BlockData;
-    addBlock(block : BlockData) : void;
-    getNextBlock(transactions : TransactionData[]) :BlockData;
-    getPreviousBlock() : BlockData;
-    generateHash(block:BlockData) : string;
-}
 
 
 export default class Blockchain implements BlockchainData{

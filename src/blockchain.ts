@@ -15,7 +15,7 @@ export default class Blockchain implements BlockchainData{
         this.addBlock(genesisBlock);
     }
     genesisBlock!: BlockData;
-    //add block to blockchain to Blockchain
+    //if genesis block, add block to blockchain 
     public addBlock(block: BlockData): void {
         if(this.blocks.length ===0){
            block.previoushash = "0000000000";

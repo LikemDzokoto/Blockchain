@@ -1,4 +1,4 @@
-import { BlockData, TransactionData } from "./class";
+import { BlockData, TransactionData } from './types/class';
 export default class Block implements BlockData {
     index: number;
     hash: string;

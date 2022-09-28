@@ -1,3 +1,4 @@
+
 export interface TransactionData{
     from:string;    
     to: string;
@@ -10,6 +11,7 @@ export interface BlockData{
      nonce : number;
      transactions: TransactionData[];
      key: string;
+     addTransaction(transaction: TransactionData) : void;
 
 }
 

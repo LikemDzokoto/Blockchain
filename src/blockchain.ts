@@ -1,7 +1,7 @@
 import sha256  from 'js-sha256';
 import Block from './block';
 
-import { BlockData,BlockchainData,TransactionData } from './class';
+import { BlockData,BlockchainData,TransactionData } from './types/class';
 
 
 
@@ -11,7 +11,7 @@ export default class Blockchain implements BlockchainData{
     //constructor runs the genesis block first 
     constructor(genesisBlock : BlockData){
         this.blocks =[];
-        this.difficulty =3;
+        this.difficulty =3  ;
         this.addBlock(genesisBlock);
     }
     genesisBlock!: BlockData;

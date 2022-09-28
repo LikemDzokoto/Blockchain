@@ -5,6 +5,7 @@ import Blockchain from "./blockchain";
 import Block from "./block";
 import Transaction from "./transaction";
 import { TransactionData } from './types/class';
+import transaction from './transaction';
 // import { BlockData } from '../types/types/class';
 
 
@@ -18,26 +19,40 @@ app.use(bodyParser.json());
 let genesisBlock = new Block();
 
 
+let transactions: TransactionData[] = [];
+
+
+
 
 //intialise the blockchain with the genesis block
 let bc = new Blockchain(genesisBlock);
 
 
 app.get('/', function(req, res){
-    res.json(bc.blocks)
+    res.json(bc.blocks);
     
 })
+app.post('/transaction', function(req, res){
+let {from , to , amount} = req.body;
 
-// //create a transaction
-// let t = new Transaction('me','you', 7);
-let transactions: TransactionData[] = [];
+//make a transaction
+let t = new Transaction(from , to , amount);
+transactions =[...transactions, t];
+res.json(t);
+
+}
+)
 
 
-// //mining phase
-// let newb = bc.getNextBlock([t]);
-// bc.addBlock(newb)
+//mining route
+app.get('/mine', function(req,res){
+let newB = bc.getNextBlock(transactions);
+transactions = [];
+bc.addBlock(newB);
+res.json(bc)
 
-// console.log(bc.blocks[1].transactions);
+}
+)
 
 app.listen(3000, function(){
     console.log('port has started on 3000')

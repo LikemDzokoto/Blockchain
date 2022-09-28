@@ -1,5 +1,5 @@
 
-import { BlockData,TransactionData } from "./class";
+import { BlockData,TransactionData } from './types/class';
 export default class Block implements BlockData{
 
     //define a constructor for the class
@@ -18,4 +18,4 @@ export default class Block implements BlockData{
     public addTransaction(transaction : TransactionData) : void {
         this.transactions = [...this.transactions , transaction];   
     }
-}
+}   
